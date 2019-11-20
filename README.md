@@ -1,2 +1,21 @@
-# bofh-process-store
-A library which allow to store temporary data in the process dictionary.
+# ProcessStore
+
+**TODO: Add description**
+
+## Installation
+
+If [available in Hex](https://hex.pm/docs/publish), the package can be installed
+by adding `process_store` to your list of dependencies in `mix.exs`:
+
+```elixir
+def deps do
+  [
+    {:process_store, "~> 0.1.0"}
+  ]
+end
+```
+
+Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
+and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
+be found at [https://hexdocs.pm/process_store](https://hexdocs.pm/process_store).
+
