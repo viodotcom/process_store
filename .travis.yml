@@ -7,7 +7,7 @@ cache:
     - priv/plts
 
 elixir:
-  - 1.9.1
+  - 1.9.4
 
 otp_release:
   - 22.0.7
