@@ -27,7 +27,7 @@ Store a value:
 iex> ProcessStore.store(:my_key, "my value")
 nil
 
-# When a key already exists, store the new value and returns the previous one.
+# When a key already exists, store the new value and return the previous one.
 iex> ProcessStore.store(:my_key, "a new value")
 "my value"
 ```
