@@ -1,12 +1,12 @@
 defmodule ProcessStore.MixProject do
   use Mix.Project
 
-  @version "0.1.0"
+  @version "0.0.0"
   @source_url "https://github.com/FindHotel/process_store"
 
   def project do
     [
-      app: :bofh_process_store,
+      app: :process_store,
       deps: deps(),
       description: "A library which allows to store temporary data in the process dictionary.",
       dialyzer: dialyzer(),
@@ -19,14 +19,12 @@ defmodule ProcessStore.MixProject do
     ]
   end
 
-  # Run "mix help compile.app" to learn about applications.
   def application do
     [
       extra_applications: [:logger]
     ]
   end
 
-  # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
       {:credo, "~> 1.1", only: [:dev, :test], runtime: false},
@@ -54,6 +52,7 @@ defmodule ProcessStore.MixProject do
   defp package do
     %{
       files: ["lib", "mix.exs", "README.md", "CHANGELOG.md"],
+      licenses: ["Apache 2"],
       links: %{"GitHub" => @source_url},
       maintainers: [
         "Antonio Lorusso",

@@ -24,7 +24,7 @@ full-test: format credo dialyzer test ## Perform the unit tests, format, static 
 
 .PHONY: help
 help: ## Print this help
-	@echo -e "BoFH Process Store ${VERSION}\n"
+	@echo -e "Process Store ${VERSION}\n"
 	@awk -F ':|##' '/^[^\t].+?:.*?##/ { printf "\033[36m%-30s\033[0m %s\n", $$1, $$NF }' $(MAKEFILE_LIST)
 
 .PHONY: install
@@ -32,6 +32,10 @@ install: ## Install dependencies
 	@mix local.hex --force && \
 		mix local.rebar --force && \
 		mix deps.get
+
+.PHONY: publish
+publish: ## Publishes to Hex
+	@mix hex.publish
 
 BLUE_COLOR := "\\033[0\;34m"
 DEFAULT_COLOR := "\\033[0\;39m"
@@ -44,7 +48,7 @@ PATCH := $(shell echo "${VERSION}" | cut -d . -f3)
 README_FILE := README.md
 CHANGELOG_FILE := CHANGELOG.md
 DATE := $(shell date +"%Y-%m-%d")
-REPO_NAME := bofh-process-store
+REPO_NAME := process_store
 REPO := https:\/\/github.com\/FindHotel\/${REPO_NAME}\/compare
 
 .PHONY: release
@@ -89,5 +93,5 @@ release: ## Bumps the version and creates the new tag
 	  echo -e "\n${BLUE_COLOR}If everything's ok, push the changes to updstream!${DEFAULT_COLOR}"
 
 .PHONY: test
-test: ## Test the project
-	@mix test $(args)
+test: ## Run tests
+	mix test --cover
