@@ -41,8 +41,7 @@ iex> ProcessStore.store(:non_existing_key)
 nil
 ```
 
-The stored values are available in different process.
-
+The stored values are available in different processes:
 ```elixir
 iex> ProcessStore.store(:my_key, "my value")
 nil
@@ -64,9 +63,9 @@ The full documentation is available at [https://hexdocs.pm/process_store](https:
 
 ## Development
 
-Make commands are available to help in development, like to install dependencies and run tests.
+Helpful make commands are available for development, like to install dependencies and run tests.
 
-The list all the make commeands:
+To list all the make commands:
 ```sh
 make
 ```
@@ -91,6 +90,6 @@ Process Store is released under the Apache 2.0 License. See the
 
 ## Author
 
-[FindHotel)](https://github.com/FindHotel)
+[FindHotel](https://github.com/FindHotel)
 
-!(FindHotel)[https://dgivdslhqe3qo.cloudfront.net/careers/photos/10047/thumb_photo_1463900217.png]
+![FindHotel](https://dgivdslhqe3qo.cloudfront.net/careers/photos/10047/thumb_photo_1463900217.png)
