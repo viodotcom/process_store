@@ -80,7 +80,7 @@ release: ## Bumps the version and creates the new tag
 	  echo -e "\t${DIM_COLOR}Updating ${VERSION_FILE} version${DEFAULT_COLOR}" && \
 	  sed -i -e "s/@version \"${VERSION}\"/@version \"$$NEW_VERSION\"/g" ${VERSION_FILE} && \
 	  echo -e "\t${DIM_COLOR}Updating ${README_FILE} version${DEFAULT_COLOR}" && \
-	  sed -i -e "s/ref: \"${VERSION}\"/ref: \"$$NEW_VERSION\"/g" ${README_FILE} && \
+	  sed -i -e "s/:${REPO_NAME}, \"~> ${VERSION}\"/:${REPO_NAME}, \"~> $$NEW_VERSION\"/g" ${README_FILE} && \	 
 	  echo -e "\t${DIM_COLOR}Updating ${CHANGELOG_FILE} version${DEFAULT_COLOR}" && \
 	  sed -i -e "s/## \[Unreleased\]/## \[Unreleased\]\\n\\n## \[$$NEW_VERSION\] - ${DATE}/g" ${CHANGELOG_FILE} && \
 	  sed -i -e "s/${REPO}\/${VERSION}...HEAD/${REPO}\/$$NEW_VERSION...HEAD/g" ${CHANGELOG_FILE} && \
