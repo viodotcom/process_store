@@ -3,7 +3,7 @@
 [![Hex.pm](https://img.shields.io/hexpm/v/process_store.svg)](https://hex.pm/packages/process_store)
 [![Docs](https://img.shields.io/badge/hex-docs-542581.svg)](https://hexdocs.pm/process_store)
 [![Build Status](https://travis-ci.com/FindHotel/process_store.svg?branch=master)](https://travis-ci.com/FindHotel/process_store)
-[![License](https://img.shields.io/hexpm/l/process_store.svg)](https://github.com/FindHotel/process_store_elixir/blob/master/LICENSE)
+[![License](https://img.shields.io/hexpm/l/process_store.svg)](https://github.com/FindHotel/process_store/blob/master/LICENSE)
 
 A simple library to store and retrieve data from the process tree.
 
