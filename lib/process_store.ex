@@ -14,10 +14,10 @@ defmodule ProcessStore do
 
   ## Examples
 
-      iex> #{inspect(__MODULE__)}.store("akey", anything")
+      iex> #{inspect(__MODULE__)}.store(:my_key, anything")
       nil
 
-      iex> #{inspect(__MODULE__)}.store("akey", "somethingelse")
+      iex> #{inspect(__MODULE__)}.store(:my_key, "somethingelse")
       "anything"
 
   """
@@ -31,8 +31,11 @@ defmodule ProcessStore do
 
   ## Examples
 
-      iex> #{inspect(__MODULE__)}.fetch("akey")
+      iex> #{inspect(__MODULE__)}.fetch(:my_key)
       "anything"
+
+      iex> #{inspect(__MODULE__)}.fetch(:non_existing_key)
+      nil
 
   """
   @spec fetch(key()) :: data()
@@ -49,7 +52,7 @@ defmodule ProcessStore do
       |> Process.info()
       |> get_in([:dictionary, key])
       |> case do
-        nil -> {:cont, %{}}
+        nil -> {:cont, nil}
         state -> {:halt, state}
       end
     end)
@@ -57,5 +60,5 @@ defmodule ProcessStore do
 
   defp find_data([_something | data], key), do: find_data(data, key)
 
-  defp find_data([], _key), do: []
+  defp find_data([], _key), do: nil
 end

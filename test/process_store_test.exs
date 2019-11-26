@@ -47,5 +47,24 @@ defmodule ProcessStoreTest do
 
       assert Subject.fetch(:another_key) == "something"
     end
+
+    test "when the key does not exist, returns nil", %{supervisor: sup} do
+      assert Subject.fetch(:non_existing_key) == nil
+
+      # Simulate a process tree.
+      sup
+      |> Task.Supervisor.async(fn ->
+        sup
+        |> Task.Supervisor.async(fn ->
+          sup
+          |> Task.Supervisor.async(fn ->
+            assert Subject.fetch(:non_existing_key) == nil
+          end)
+          |> Task.await()
+        end)
+        |> Task.await()
+      end)
+      |> Task.await()
+    end
   end
 end
