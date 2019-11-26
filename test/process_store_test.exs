@@ -3,11 +3,6 @@ defmodule ProcessStoreTest do
 
   alias ProcessStore, as: Subject
 
-  setup do
-    {:ok, pid} = Task.Supervisor.start_link()
-    {:ok, supervisor: pid}
-  end
-
   describe "store/2" do
     test "when the key does not exist yet, stores the value and returns nil" do
       assert Subject.store(:my_key, "something") == nil
@@ -23,6 +18,11 @@ defmodule ProcessStoreTest do
   end
 
   describe "fetch/1" do
+    setup do
+      {:ok, pid} = Task.Supervisor.start_link()
+      {:ok, supervisor: pid}
+    end
+
     test "when the dictionary key is in a parent process, returns the value", %{supervisor: sup} do
       Subject.store(:my_key, "somethingelse")
 
