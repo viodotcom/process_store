@@ -1,41 +1,51 @@
-defmodule BoFH.ProcessStoreTest do
+defmodule ProcessStoreTest do
   use ExUnit.Case
 
-  alias BoFH.ProcessStore, as: Subject
+  alias ProcessStore, as: Subject
 
   setup do
     {:ok, pid} = Task.Supervisor.start_link()
     {:ok, supervisor: pid}
   end
 
-  test "store/2" do
-    assert Subject.store(:key, "something") == nil
+  describe "store/2" do
+    test "when the key does not exist yet, stores the value and returns nil" do
+      assert Subject.store(:my_key, "something") == nil
+      assert Subject.fetch(:my_key) == "something"
+    end
 
-    assert Subject.store(:key, %{a: "b"}) == "something"
+    test "when the key already exist, stores the new value and returns the previous value" do
+      Subject.store(:my_key, "something")
+
+      assert Subject.store(:my_key, %{a: "b"}) == "something"
+      assert Subject.fetch(:my_key) == %{a: "b"}
+    end
   end
 
-  test "fetch/2 when the dictionary key is a parent process", %{supervisor: sup} do
-    Subject.store(:key, "somethingelse")
+  describe "fetch/1" do
+    test "when the dictionary key is in a parent process, returns the value", %{supervisor: sup} do
+      Subject.store(:my_key, "somethingelse")
 
-    # simulate a process tree
-    sup
-    |> Task.Supervisor.async(fn ->
+      # Simulate a process tree.
       sup
       |> Task.Supervisor.async(fn ->
         sup
         |> Task.Supervisor.async(fn ->
-          assert Subject.fetch(:key) == "somethingelse"
+          sup
+          |> Task.Supervisor.async(fn ->
+            assert Subject.fetch(:my_key) == "somethingelse"
+          end)
+          |> Task.await()
         end)
         |> Task.await()
       end)
       |> Task.await()
-    end)
-    |> Task.await()
-  end
+    end
 
-  test "fetch/2 when the dictionary key is in the same process" do
-    Subject.store("akey", "something")
+    test "when the dictionary key is in the same process, returns the value" do
+      Subject.store(:another_key, "something")
 
-    assert Subject.fetch("akey") == "something"
+      assert Subject.fetch(:another_key) == "something"
+    end
   end
 end
