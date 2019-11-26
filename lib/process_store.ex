@@ -1,4 +1,4 @@
-defmodule BoFH.ProcessStore do
+defmodule ProcessStore do
   @moduledoc """
   A Facility to store and retrieve a data from the process dictionary.
   """
@@ -7,11 +7,10 @@ defmodule BoFH.ProcessStore do
   @type data() :: any()
 
   @doc """
-  Store the passed `value` in the dictionary of the current `Process`
-  using the passed `key`.
+  Store the passed `value` in the dictionary of the current `Process` using the passed `key`.
 
-  The return value of this function is the value that was previously
-  stored under the same `key`, or nil in case no value was stored before.
+  The return value of this function is the value that was previously stored under the same `key`,
+  or `nil` in case no value was stored before.
 
   ## Examples
 
@@ -26,8 +25,8 @@ defmodule BoFH.ProcessStore do
   def store(key, value), do: Process.put(key, value)
 
   @doc """
-  Retrieve the value of `key` from the `Process` or from the `$callers`
-  dictionaries.
+  Retrieve the value of `key` from the `Process` or from the `$callers` dictionaries.
+
   Returns the first found occurrence.
 
   ## Examples

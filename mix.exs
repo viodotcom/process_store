@@ -1,18 +1,17 @@
-defmodule BoFH.ProcessStore.MixProject do
+defmodule ProcessStore.MixProject do
   use Mix.Project
 
   @version "0.1.0"
-  @source_url "https://github.com/FindHotel/bofh-process-store"
+  @source_url "https://github.com/FindHotel/process_store"
 
   def project do
     [
       app: :bofh_process_store,
       deps: deps(),
-      description: "The simple process dictionary storage wrapper.",
+      description: "A library which allows to store temporary data in the process dictionary.",
       dialyzer: dialyzer(),
       docs: docs(),
       elixir: "~> 1.9",
-      elixirc_paths: elixirc_paths(Mix.env()),
       package: package(),
       source_url: @source_url,
       start_permanent: Mix.env() == :prod,
@@ -46,21 +45,11 @@ defmodule BoFH.ProcessStore.MixProject do
     [
       extras: extras(),
       main: "readme",
-      nest_modules_by_prefix: nest_modules_by_prefix(),
       source_ref: @version
     ]
   end
 
   defp extras, do: ["README.md", "CHANGELOG.md"]
-
-  defp nest_modules_by_prefix do
-    []
-  end
-
-  # This makes sure your factory and any other modules in test/support are compiled
-  # when in the test environment.
-  defp elixirc_paths(:test), do: ["lib", "test/support"]
-  defp elixirc_paths(_), do: ["lib"]
 
   defp package do
     %{
@@ -71,7 +60,7 @@ defmodule BoFH.ProcessStore.MixProject do
         "Felipe Vieira",
         "Fernando Hamasaki de Amorim"
       ],
-      name: "bofh_providers"
+      name: "process_store"
     }
   end
 end
