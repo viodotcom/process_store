@@ -8,10 +8,10 @@ defmodule ProcessStore.MixProject do
     [
       app: :process_store,
       deps: deps(),
-      description: "A library which allows to store temporary data in the process dictionary.",
+      description: "A library which allow to store temporary data in the process dictionary.",
       dialyzer: dialyzer(),
       docs: docs(),
-      elixir: "~> 1.9",
+      elixir: "~> 1.10",
       package: package(),
       source_url: @source_url,
       start_permanent: Mix.env() == :prod,
@@ -27,9 +27,9 @@ defmodule ProcessStore.MixProject do
 
   defp deps do
     [
-      {:credo, "~> 1.1", only: [:dev, :test], runtime: false},
-      {:dialyxir, "~> 1.0.0-rc.7", only: [:dev], runtime: false},
-      {:ex_doc, "~> 0.21", only: :dev, runtime: false}
+      {:credo, "~> 1.4", only: [:dev, :test], runtime: false},
+      {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
+      {:ex_doc, "~> 0.22.6", only: :dev, runtime: false}
     ]
   end
 
@@ -41,13 +41,11 @@ defmodule ProcessStore.MixProject do
 
   defp docs do
     [
-      extras: extras(),
+      extras: ["README.md", "CHANGELOG.md"],
       main: "readme",
       source_ref: @version
     ]
   end
-
-  defp extras, do: ["README.md", "CHANGELOG.md"]
 
   defp package do
     %{
@@ -57,7 +55,8 @@ defmodule ProcessStore.MixProject do
       maintainers: [
         "Antonio Lorusso",
         "Felipe Vieira",
-        "Fernando Hamasaki de Amorim"
+        "Fernando Hamasaki de Amorim",
+        "Sergio Rodrigues"
       ],
       name: "process_store"
     }
