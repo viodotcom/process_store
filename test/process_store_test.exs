@@ -48,6 +48,27 @@ defmodule ProcessStoreTest do
       assert Subject.fetch(:another_key) == "something"
     end
 
+    test "when the dictionary key is in the same process, and the process is nested, " <>
+           "returns the value",
+         %{supervisor: sup} do
+      # Simulate a process tree.
+      sup
+      |> Task.Supervisor.async(fn ->
+        sup
+        |> Task.Supervisor.async(fn ->
+          sup
+          |> Task.Supervisor.async(fn ->
+            Subject.store(:nested_key, "somenested")
+
+            assert Subject.fetch(:nested_key) == "somenested"
+          end)
+          |> Task.await()
+        end)
+        |> Task.await()
+      end)
+      |> Task.await()
+    end
+
     test "when the key does not exist, returns nil", %{supervisor: sup} do
       assert Subject.fetch(:non_existing_key) == nil
 

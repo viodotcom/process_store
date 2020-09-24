@@ -39,11 +39,9 @@ defmodule ProcessStore do
 
   """
   @spec fetch(key()) :: data()
-  def fetch(key), do: Process.get() |> find_data(key)
+  def fetch(key), do: Process.get(key) || find_data(Process.get(), key)
 
   @spec find_data(keyword(), key()) :: data()
-  defp find_data([{key, value} | _data], wanted_key) when key == wanted_key, do: value
-
   defp find_data([{:"$callers", callers} | _data], key) do
     callers
     |> List.wrap()
