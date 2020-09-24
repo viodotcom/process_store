@@ -7,10 +7,10 @@ cache:
     - priv/plts
 
 elixir:
-  - 1.9.4
+  - "1.10"
 
 otp_release:
-  - 22.0.7
+  - "23.0"
 
 install:
   - make install
