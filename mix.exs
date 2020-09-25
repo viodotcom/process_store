@@ -8,7 +8,7 @@ defmodule ProcessStore.MixProject do
     [
       app: :process_store,
       deps: deps(),
-      description: "A library which allow to store temporary data in the process dictionary.",
+      description: "A library which allows to store temporary data in the process dictionary.",
       dialyzer: dialyzer(),
       docs: docs(),
       elixir: "~> 1.10",

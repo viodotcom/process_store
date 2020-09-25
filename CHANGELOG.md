@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Fixes `ProcessStore.fetch/1`. Now the function is able to retrieve the value from the process
   dictionary when the process is nested into a process tree.
-- Update hex libraries and elixir version
+- Update Hex libraries and Elixir version.
 
 ## [0.1.0] - 2019-11-26
 ### Added
