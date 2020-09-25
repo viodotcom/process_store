@@ -15,7 +15,7 @@ adding `process_store` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:process_store, "~> 0.1.0"}
+    {:process_store, "~> 0.2.0"}
   ]
 end
 ```
